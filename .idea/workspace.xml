@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="34f1e80f-3802-4e6c-884f-26b0acfb7b54" name="Default Changelist" comment="" />
+    <list default="true" id="34f1e80f-3802-4e6c-884f-26b0acfb7b54" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cms.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/teletubbiesdb.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/0fb6e38e-29d7-4e2c-837a-74170aedbcf2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/2133fab1-64a0-45e7-b060-45d47555f7a6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/3683ae4f-be10-4925-a889-592c9a457fe0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/430d2faa-af2d-4169-b22a-06f6d64ad2f2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/49d95333-b1ba-43cc-9144-24dde3661cf5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/4ab6c379-63ad-4f41-84e1-49353986d7a9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/4e0214a1-f5bf-45e0-ae41-21ba3dd8f057.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/523867d6-14e1-4aa5-9e80-39988cfd904d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/6b97f622-7a7e-418c-a60b-f8cdd37f22e9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/783e8bc4-12ea-4561-b8aa-e0b7458fcae2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/8a10bda0-eb9e-45be-8527-6ce77c149cbc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/a7ff0953-6772-41be-9186-9c600a3e55f2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/a94adc60-b932-406a-a793-45c495fe4f8b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/afe68470-7a8d-4a01-be6f-816d21c1168e.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/b56e1ded-6021-4802-8f8b-9e0f98d2ca3d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/b9bbaa28-5e68-4185-a0e0-9aa34a14d8a5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/cb8f323a-c3e9-41d4-9acc-40ed2ff78688.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/d181bd9c-2111-4510-8629-730318fa21a9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/d7913fa1-a843-4f98-87e9-ff5acc1d0399.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/ec5b99ec-f0de-44b6-a3eb-2712b934c1d4.jpg" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +57,9 @@
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\2020暑期实习\NeusoftDebug03\teletubbies_server\sql" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\-\Desktop\新建文件夹\teletubbies_server\src\main\resources\static\imgs" />
     </key>
@@ -73,10 +100,34 @@
       <updated>1597306310986</updated>
       <workItem from="1597306312641" duration="905000" />
       <workItem from="1597307244344" duration="12983000" />
+      <workItem from="1597325439637" duration="326000" />
     </task>
+    <task id="LOCAL-00001" summary="更新项目">
+      <created>1597325628834</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1597325628834</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="更新项目" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新项目" />
   </component>
 </project>
