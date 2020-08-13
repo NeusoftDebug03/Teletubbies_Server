@@ -56,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
     public PageBean queryOrders(Integer currentPage, Integer pageSize, Order condition) {
 
         Page page = PageHelper.startPage(currentPage,pageSize);
-        List<Order> orders = orderMapper.queryFlowers(condition);
+        List<Order> orders = orderMapper.queryProducts(condition);
         Long totalNum = page.getTotal();
         Integer totalPage = page.getPages();
         Boolean isMore = currentPage<totalPage?true:false;
@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Integer getFlowerSaleCount(Integer flowerId) {
-        return orderMapper.getFlowerSaleCount(flowerId);
+    public Integer getProductSaleCount(Integer productId) {
+        return orderMapper.getProductSaleCount(productId);
     }
 }

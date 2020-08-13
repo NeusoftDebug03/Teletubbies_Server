@@ -7,26 +7,26 @@ import java.util.List;
 import java.util.Map;
 
 public interface ProductService {
-    List<Product> findAllFlowers();
+    List<Product> findAllProducts();
 
-    Product inserFlower(Product product);
+    Product inserProduct(Product product);
 
-    Integer modifyFlower(Product product);
+    Integer modifyProduct(Product product);
 
-    Integer deleteFlower(Integer flowerId);
+    Integer deleteProduct(Integer productId);
 
-    Product findFlower(Integer flowerId);
-
-
-
-    PageBean queryFlowers(Integer currentPage, Integer pageSize, Product condition);
+    Product findProduct(Integer productId);
 
 
-    PageBean findFlowersByKey(Integer currentPage, Integer pageSize, String key);
 
-    PageBean queryFlowerCover(Integer currentPage, Integer pageSize, Product condition);
+    PageBean queryProducts(Integer currentPage, Integer pageSize, Product condition);
 
-    Map<String,Object> getFlowerDetail(Integer flowerId);
 
-    PageBean queryFlowerCoverByKey(Integer currentPage, Integer pageSize, String key);
+    PageBean findProductsByKey(Integer currentPage, Integer pageSize, String key);
+
+    PageBean queryProductCover(Integer currentPage, Integer pageSize, Product condition);
+
+    Map<String,Object> getProductDetail(Integer productId);
+
+    PageBean queryProductCoverByKey(Integer currentPage, Integer pageSize, String key);
 }

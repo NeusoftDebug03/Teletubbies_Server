@@ -9,29 +9,29 @@ import java.util.List;
 
 @Mapper
 public interface ProductMapper {
-    int deleteByPrimaryKey(Integer flowerId);
+    int deleteByPrimaryKey(Integer productId);
 
     int insert(Product record);
 
     int insertSelective(Product record);
 
-    Product selectByPrimaryKey(Integer flowerId);
+    Product selectByPrimaryKey(Integer productId);
 
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
 
-    List<Product> findAllFlowers();
+    List<Product> findAllProducts();
 
-    List<Product> findFlowersByKey(@Param("key") String key);
+    List<Product> findProductsByKey(@Param("key") String key);
 
-    List<Product> queryFlowers(Product condition);
+    List<Product> queryProducts(Product condition);
 
-    List<ProductCover> queryFlowerCovers(Product condition);
+    List<ProductCover> queryProductCovers(Product condition);
 
-    String getFlowerCover(Integer flowerId);
+    String getProductCover(Integer productId);
 
-    List<String> getFlowerImgs(Integer flowerId);
+    List<String> getProductImgs(Integer productId);
 
-    List<ProductCover> queryFlowerCoversByKey(@Param("key") String key);
+    List<ProductCover> queryProductCoversByKey(@Param("key") String key);
 }

@@ -1,32 +1,34 @@
 package com.debug.teletubbies.entity;
 
 public class ProductImg {
-    private Integer flowerImgId;
+    private Integer productImgId;
 
-    private Integer flowerId;
+    private Integer productId;
 
-    private String flowerImgPath;
+    private String productImgPath;
 
-    public Integer getFlowerId() {
-        return flowerId;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setFlowerId(Integer flowerId) {
-        this.flowerId = flowerId;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public String getFlowerImgPath() {
-        return flowerImgPath;
+    public String getProductImgPath() {
+        return productImgPath;
     }
 
-    public void setFlowerImgPath(String flowerImgPath) {
-        this.flowerImgPath = flowerImgPath == null ? null : flowerImgPath.trim();
-    }
-    public Integer getFlowerImgId() {
-        return flowerImgId;
+    public void setProductImgPath(String productImgPath) {
+        this.productImgPath = productImgPath == null ? null : productImgPath.trim();
+//        this.productImgPath = productImgPath;
     }
 
-    public void setFlowerImgId(Integer flowerImgId) {
-        this.flowerImgId = flowerImgId;
+    public Integer getProductImgId() {
+        return productImgId;
+    }
+
+    public void setProductImgId(Integer productImgId) {
+        this.productImgId = productImgId;
     }
 }

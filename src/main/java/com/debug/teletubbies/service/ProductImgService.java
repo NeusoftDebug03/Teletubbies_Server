@@ -6,11 +6,11 @@ import com.debug.teletubbies.tools.PageBean;
 import java.util.List;
 
 public interface ProductImgService {
-    List<ProductImg> getFlowerImgsById(Integer flowerId);
+    List<ProductImg> getProductImgsById(Integer productId);
 
-    void addFlowerImg(Integer flowerId, String imgPath);
+    void addProductImg(Integer productId, String imgPath);
 
-    void delFlowerImg(ProductImg productImg);
+    void delProductImg(ProductImg productImg);
 
-    PageBean queryFlowersImgs(Integer currentPage, Integer pageSize);
+    PageBean queryProductsImgs(Integer currentPage, Integer pageSize);
 }

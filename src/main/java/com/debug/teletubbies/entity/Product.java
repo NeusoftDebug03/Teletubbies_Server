@@ -3,118 +3,118 @@ package com.debug.teletubbies.entity;
 import java.math.BigDecimal;
 
 public class Product {
-    private Integer flowerId;
+    private Integer productId;
 
-    private String flowerName;
+    private String productName;
 
-    private String flowerLangs;
+    private String productLangs;
 
-    private String flowerIntro;
+    private String productIntro;
 
-    private String flowerDetails;
+    private String productDetails;
 
-    private String flowerExtraInfo;
+    private String productExtraInfo;
 
-    private BigDecimal flowerPrice;
+    private BigDecimal productPrice;
 
-    private BigDecimal flowerDiscount;
+    private BigDecimal productDiscount;
 
-    private Integer flowerStock;
+    private Integer productStock;
 
-    private String flowerClass;
+    private String productClass;
 
-    public String getFlowerClass() {
-        return flowerClass;
+    public String getProductClass() {
+        return productClass;
     }
 
-    public void setFlowerClass(String flowerClass) {
-        this.flowerClass = flowerClass;
+    public void setProductClass(String productClass) {
+        this.productClass = productClass;
     }
 
-    public Integer getFlowerId() {
-        return flowerId;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setFlowerId(Integer flowerId) {
-        this.flowerId = flowerId;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public String getFlowerName() {
-        return flowerName;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setFlowerName(String flowerName) {
-        this.flowerName = flowerName == null ? null : flowerName.trim();
+    public void setProductName(String productName) {
+        this.productName = productName == null ? null : productName.trim();
     }
 
-    public String getFlowerLangs() {
-        return flowerLangs;
+    public String getProductLangs() {
+        return productLangs;
     }
 
-    public void setFlowerLangs(String flowerLangs) {
-        this.flowerLangs = flowerLangs == null ? null : flowerLangs.trim();
+    public void setProductLangs(String productLangs) {
+        this.productLangs = productLangs == null ? null : productLangs.trim();
     }
 
-    public String getFlowerIntro() {
-        return flowerIntro;
+    public String getProductIntro() {
+        return productIntro;
     }
 
-    public void setFlowerIntro(String flowerIntro) {
-        this.flowerIntro = flowerIntro == null ? null : flowerIntro.trim();
+    public void setProductIntro(String productIntro) {
+        this.productIntro = productIntro == null ? null : productIntro.trim();
     }
 
-    public String getFlowerDetails() {
-        return flowerDetails;
+    public String getProductDetails() {
+        return productDetails;
     }
 
-    public void setFlowerDetails(String flowerDetails) {
-        this.flowerDetails = flowerDetails == null ? null : flowerDetails.trim();
+    public void setProductDetails(String productDetails) {
+        this.productDetails = productDetails == null ? null : productDetails.trim();
     }
 
-    public String getFlowerExtraInfo() {
-        return flowerExtraInfo;
+    public String getProductExtraInfo() {
+        return productExtraInfo;
     }
 
-    public void setFlowerExtraInfo(String flowerExtraInfo) {
-        this.flowerExtraInfo = flowerExtraInfo == null ? null : flowerExtraInfo.trim();
+    public void setProductExtraInfo(String productExtraInfo) {
+        this.productExtraInfo = productExtraInfo == null ? null : productExtraInfo.trim();
     }
 
-    public BigDecimal getFlowerPrice() {
-        return flowerPrice;
+    public BigDecimal getProductPrice() {
+        return productPrice;
     }
 
-    public void setFlowerPrice(BigDecimal flowerPrice) {
-        this.flowerPrice = flowerPrice;
+    public void setProductPrice(BigDecimal productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public BigDecimal getFlowerDiscount() {
-        return flowerDiscount;
+    public BigDecimal getProductDiscount() {
+        return productDiscount;
     }
 
-    public void setFlowerDiscount(BigDecimal flowerDiscount) {
-        this.flowerDiscount = flowerDiscount;
+    public void setProductDiscount(BigDecimal productDiscount) {
+        this.productDiscount = productDiscount;
     }
 
-    public Integer getFlowerStock() {
-        return flowerStock;
+    public Integer getProductStock() {
+        return productStock;
     }
 
-    public void setFlowerStock(Integer flowerStock) {
-        this.flowerStock = flowerStock;
+    public void setProductStock(Integer productStock) {
+        this.productStock = productStock;
     }
 
     @Override
     public String toString() {
-        return "Flower{" +
-                "flowerId=" + flowerId +
-                ", flowerName='" + flowerName + '\'' +
-                ", flowerLangs='" + flowerLangs + '\'' +
-                ", flowerIntro='" + flowerIntro + '\'' +
-                ", flowerDetails='" + flowerDetails + '\'' +
-                ", flowerExtraInfo='" + flowerExtraInfo + '\'' +
-                ", flowerPrice=" + flowerPrice +
-                ", flowerDiscount=" + flowerDiscount +
-                ", flowerStock=" + flowerStock +
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productLangs='" + productLangs + '\'' +
+                ", productIntro='" + productIntro + '\'' +
+                ", productDetails='" + productDetails + '\'' +
+                ", productExtraInfo='" + productExtraInfo + '\'' +
+                ", productPrice=" + productPrice +
+                ", productDiscount=" + productDiscount +
+                ", productStock=" + productStock +
                 '}';
     }
 }

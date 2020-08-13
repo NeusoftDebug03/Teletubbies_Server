@@ -3,40 +3,40 @@ package com.debug.teletubbies.entity;
 import java.math.BigDecimal;
 
 public class ProductCover {
-    private Integer flowerId;
-    private String flowerName;
-    private BigDecimal flowerPrice;
-    private String flowerImgPath;
+    private Integer productId;
+    private String productName;
+    private BigDecimal productPrice;
+    private String productImgPath;
 
-    public Integer getFlowerId() {
-        return flowerId;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setFlowerId(Integer flowerId) {
-        this.flowerId = flowerId;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public String getFlowerName() {
-        return flowerName;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setFlowerName(String flowerName) {
-        this.flowerName = flowerName;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public BigDecimal getFlowerPrice() {
-        return flowerPrice;
+    public BigDecimal getProductPrice() {
+        return productPrice;
     }
 
-    public void setFlowerPrice(BigDecimal flowerPrice) {
-        this.flowerPrice = flowerPrice;
+    public void setProductPrice(BigDecimal productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public String getFlowerImgPath() {
-        return flowerImgPath;
+    public String getProductImgPath() {
+        return productImgPath;
     }
 
-    public void setFlowerImgPath(String flowerImgPath) {
-        this.flowerImgPath = flowerImgPath;
+    public void setProductImgPath(String productImgPath) {
+        this.productImgPath = productImgPath;
     }
 }

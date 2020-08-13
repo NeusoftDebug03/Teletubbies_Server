@@ -18,5 +18,5 @@ public interface OrderService {
 
     PageBean queryOrders(Integer currentPage, Integer pageSize, Order condition);
 
-    Integer getFlowerSaleCount(Integer flowerId);
+    Integer getProductSaleCount(Integer productId);
 }

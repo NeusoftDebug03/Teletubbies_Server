@@ -9,9 +9,11 @@ import java.util.List;
 public interface ProductImgMapper {
     int insert(ProductImg record);
 
+    int update(ProductImg record);
+
     int insertSelective(ProductImg record);
 
-    List<ProductImg> getFlowerImgsById(Integer flowerId);
+    List<ProductImg> getProductImgsById(Integer productId);
 
-    void delFlowerImg(ProductImg productImg);
+    void delProductImg(ProductImg productImg);
 }

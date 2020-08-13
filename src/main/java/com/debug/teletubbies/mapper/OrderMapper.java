@@ -24,7 +24,7 @@ public interface OrderMapper {
 
     Integer modifyOrderStatus(@Param("orderId") Integer orderId, @Param("statusId") Integer statusId);
 
-    List<Order> queryFlowers(Order condition);
+    List<Order> queryProducts(Order condition);
 
-    Integer getFlowerSaleCount(Integer flowerId);
+    Integer getProductSaleCount(Integer productId);
 }

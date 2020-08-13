@@ -3,13 +3,13 @@
 <mapper namespace="com.debug.teletubbies.mapper.ContentMapper">
     <resultMap id="BaseResultMap" type="com.debug.teletubbies.entity.Content">
         <result column="content_id" property="contentId" jdbcType="INTEGER"/>
-        <result column="flower_id" property="flowerId" jdbcType="INTEGER"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
         <result column="count" property="count" jdbcType="INTEGER"/>
     </resultMap>
     <insert id="insert" parameterType="com.debug.teletubbies.entity.Content">
-    insert into content (content_id, flower_id, count
+    insert into content (content_id, product_id, count
       )
-    values (#{contentId,jdbcType=INTEGER}, #{flowerId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}
+    values (#{contentId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}
       )
   </insert>
     <insert id="insertSelective" parameterType="com.debug.teletubbies.entity.Content">
@@ -18,8 +18,8 @@
             <if test="contentId != null">
                 content_id,
             </if>
-            <if test="flowerId != null">
-                flower_id,
+            <if test="productId != null">
+                product_id,
             </if>
             <if test="count != null">
                 count,
@@ -29,8 +29,8 @@
             <if test="contentId != null">
                 #{contentId,jdbcType=INTEGER},
             </if>
-            <if test="flowerId != null">
-                #{flowerId,jdbcType=INTEGER},
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
             </if>
             <if test="count != null">
                 #{count,jdbcType=INTEGER},

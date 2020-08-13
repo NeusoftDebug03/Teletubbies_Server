@@ -15,22 +15,22 @@ import java.util.List;
 import java.util.Map;
 
 
-@Service("flowerService")
+@Service("productService")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductMapper productMapper;
 
     @Override
-    public List<Product> findAllFlowers() {
+    public List<Product> findAllProducts() {
 
-        List<Product> products = productMapper.findAllFlowers();
+        List<Product> products = productMapper.findAllProducts();
         return products;
 
     }
 
     @Override
-    public Product inserFlower(Product product) {
+    public Product inserProduct(Product product) {
 
         Integer rowCount = productMapper.insertSelective(product);
         return product;
@@ -38,31 +38,31 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Integer modifyFlower(Product product) {
+    public Integer modifyProduct(Product product) {
         Integer rowCount = productMapper.updateByPrimaryKeySelective(product);
         return  rowCount;
     }
 
     @Override
-    public Integer deleteFlower(Integer flowerId) {
+    public Integer deleteProduct(Integer productId) {
 
-        Integer rowCount = productMapper.deleteByPrimaryKey(flowerId);
+        Integer rowCount = productMapper.deleteByPrimaryKey(productId);
         return  rowCount;
     }
 
     @Override
-    public Product findFlower(Integer flowerId) {
+    public Product findProduct(Integer productId) {
 
-        Product product = productMapper.selectByPrimaryKey(flowerId);
+        Product product = productMapper.selectByPrimaryKey(productId);
         return product;
     }
 
 
     @Override
-    public PageBean queryFlowers(Integer currentPage, Integer pageSize, Product condition) {
+    public PageBean queryProducts(Integer currentPage, Integer pageSize, Product condition) {
 
         Page page = PageHelper.startPage(currentPage,pageSize);
-        List<Product> products = productMapper.queryFlowers(condition);
+        List<Product> products = productMapper.queryProducts(condition);
         Long totalNum = page.getTotal();
         Integer totalPage = page.getPages();
         Boolean isMore = currentPage<totalPage?true:false;
@@ -71,9 +71,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public PageBean findFlowersByKey(Integer currentPage, Integer pageSize, String key) {
+    public PageBean findProductsByKey(Integer currentPage, Integer pageSize, String key) {
         Page page = PageHelper.startPage(currentPage,pageSize);
-        List<Product> products = productMapper.findFlowersByKey(key);
+        List<Product> products = productMapper.findProductsByKey(key);
         Long totalNum = page.getTotal();
         Integer totalPage = page.getPages();
         Boolean isMore = currentPage<totalPage?true:false;
@@ -82,12 +82,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public PageBean queryFlowerCover(Integer currentPage, Integer pageSize, Product condition) {
+    public PageBean queryProductCover(Integer currentPage, Integer pageSize, Product condition) {
         Page page = PageHelper.startPage(currentPage,pageSize);
-        List<ProductCover> productCovers = productMapper.queryFlowerCovers(condition);
+        List<ProductCover> productCovers = productMapper.queryProductCovers(condition);
         for(ProductCover productCover : productCovers) {
-            String flowerImgPath = productMapper.getFlowerCover(productCover.getFlowerId());
-            productCover.setFlowerImgPath(flowerImgPath);
+            String productImgPath = productMapper.getProductCover(productCover.getProductId());
+            productCover.setProductImgPath(productImgPath);
         }
         Long totalNum = page.getTotal();
         Integer totalPage = page.getPages();
@@ -97,22 +97,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Map<String,Object> getFlowerDetail(Integer flowerId) {
-        Product product =  this.findFlower(flowerId);
-        List<String> imgUrls = productMapper.getFlowerImgs(flowerId);
+    public Map<String,Object> getProductDetail(Integer productId) {
+        Product product =  this.findProduct(productId);
+        List<String> imgUrls = productMapper.getProductImgs(productId);
         Map<String,Object> res = new LinkedHashMap<>();
-        res.put("flower", product);
+        res.put("product", product);
         res.put("imgUrls",imgUrls);
         return res;
     }
 
     @Override
-    public PageBean queryFlowerCoverByKey(Integer currentPage, Integer pageSize, String key) {
+    public PageBean queryProductCoverByKey(Integer currentPage, Integer pageSize, String key) {
         Page page = PageHelper.startPage(currentPage,pageSize);
-        List<ProductCover> productCovers = productMapper.queryFlowerCoversByKey(key);
+        List<ProductCover> productCovers = productMapper.queryProductCoversByKey(key);
         for(ProductCover productCover : productCovers) {
-            String flowerImgPath = productMapper.getFlowerCover(productCover.getFlowerId());
-            productCover.setFlowerImgPath(flowerImgPath);
+            String productImgPath = productMapper.getProductCover(productCover.getProductId());
+            productCover.setProductImgPath(productImgPath);
         }
         Long totalNum = page.getTotal();
         Integer totalPage = page.getPages();

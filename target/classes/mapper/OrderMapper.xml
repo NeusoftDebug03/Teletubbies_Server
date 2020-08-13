@@ -102,8 +102,8 @@
     update `order` set status_id = #{statusId} where order_id = #{orderId}
   </update>
 
-    <!--List<Order> queryFlowers(Order condition);-->
-    <select id="queryFlowers" resultType="com.debug.teletubbies.entity.Order">
+    <!--List<Order> queryProducts(Order condition);-->
+    <select id="queryProducts" resultType="com.debug.teletubbies.entity.Order">
         select * from `order`
         <where>
             <if test="orderId != null">
@@ -115,9 +115,9 @@
         </where>
     </select>
 
-    <!--Integer getFlowerSaleCount(Integer flowerId);-->
-    <select id="getFlowerSaleCount" resultType="java.lang.Integer">
-    select sum(count) from content where flower_id = #{flowerId}
+    <!--Integer getProductSaleCount(Integer productId);-->
+    <select id="getProductSaleCount" resultType="java.lang.Integer">
+    select sum(count) from content where product_id = #{productId}
   </select>
 
 </mapper>

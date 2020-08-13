@@ -28,10 +28,10 @@ public class ProductController {
     * 列出所有商品
     * */
     @ApiOperation("列出所有商品")
-    @RequestMapping(value = "list_all_flowers", method = RequestMethod.POST)
-    public ResponseDto listAllFlowers(){
+    @RequestMapping(value = "list_all_products", method = RequestMethod.POST)
+    public ResponseDto listAllProducts(){
 
-        List<Product> products = productService.findAllFlowers();
+        List<Product> products = productService.findAllProducts();
 
         ResponseDto dto = new ResponseDto();
         dto.setCode("1");
@@ -43,14 +43,14 @@ public class ProductController {
     /*
     *  添加商品
     * 参数{
-    * Flower
+    * Product
     * }
     * */
     @ApiOperation("添加商品")
-    @RequestMapping(value = "add_flower", method = RequestMethod.POST)
-    public ResponseDto addFlower(@RequestBody Product product) {
+    @RequestMapping(value = "add_product", method = RequestMethod.POST)
+    public ResponseDto addProduct(@RequestBody Product product) {
 
-        Product insert_product = productService.inserFlower(product);
+        Product insert_product = productService.inserProduct(product);
 
         ResponseDto dto = new ResponseDto();
         dto.setCode("1");
@@ -62,14 +62,14 @@ public class ProductController {
     /*
     * 修改商品
     * 参数{
-    * Flower
+    * Product
     * }
     * */
     @ApiOperation("修改商品")
-    @RequestMapping(value = "modify_flower", method = RequestMethod.POST)
-    public ResponseDto modifyFlower(@RequestBody Product product) {
+    @RequestMapping(value = "modify_product", method = RequestMethod.POST)
+    public ResponseDto modifyProduct(@RequestBody Product product) {
 
-        Integer rowCount = productService.modifyFlower(product);
+        Integer rowCount = productService.modifyProduct(product);
 
         ResponseDto dto = new ResponseDto();
         dto.setCode(rowCount.toString());
@@ -80,15 +80,15 @@ public class ProductController {
     /*
     * 删除商品
     * 参数{
-    * flowerId
+    * productId
     * }
     * */
     @ApiOperation("删除商品")
-    @RequestMapping(value = "del_flower", method = RequestMethod.POST)
-    public ResponseDto deleteFlower(@RequestBody JSONObject jsonObject) {
+    @RequestMapping(value = "del_product", method = RequestMethod.POST)
+    public ResponseDto deleteProduct(@RequestBody JSONObject jsonObject) {
 
-        Integer flowerId = jsonObject.getInteger("flowerId");
-        Integer rowCount = productService.deleteFlower(flowerId);
+        Integer productId = jsonObject.getInteger("productId");
+        Integer rowCount = productService.deleteProduct(productId);
 
         ResponseDto dto = new ResponseDto();
         dto.setCode(rowCount.toString());
@@ -99,16 +99,16 @@ public class ProductController {
     /*
     * 通过id查找商品
     * 参数{
-    * flowerId
+    * productId
     * }
     * */
     @ApiOperation("通过ID查找商品")
-    @RequestMapping(value = "find_flower", method = RequestMethod.POST)
-    public ResponseDto findFlower(@RequestBody JSONObject jsonObject) {
+    @RequestMapping(value = "find_product", method = RequestMethod.POST)
+    public ResponseDto findProduct(@RequestBody JSONObject jsonObject) {
 
-        Integer flowerId = jsonObject.getInteger("flowerId");
+        Integer productId = jsonObject.getInteger("productId");
 
-        Product product = productService.findFlower(flowerId);
+        Product product = productService.findProduct(productId);
 
         ResponseDto dto = new ResponseDto();
         dto.setCode("1");
@@ -124,8 +124,8 @@ public class ProductController {
      * }
      * */
     @ApiOperation("通过关键词查找商品")
-    @RequestMapping(value = "find_key_flowers", method = RequestMethod.POST)
-    public ResponseDto findFlowersByKey(@RequestBody JSONObject jsonObject) {
+    @RequestMapping(value = "find_key_products", method = RequestMethod.POST)
+    public ResponseDto findProductsByKey(@RequestBody JSONObject jsonObject) {
 
         Integer currentPage = jsonObject.getInteger("currentPage");
         currentPage = currentPage==null?1:currentPage;
@@ -134,11 +134,11 @@ public class ProductController {
 
         String key = jsonObject.getString("key");
 
-        PageBean flowers = productService.findFlowersByKey(currentPage,pageSize,key);
+        PageBean products = productService.findProductsByKey(currentPage,pageSize,key);
         ResponseDto dto = new ResponseDto();
         dto.setCode("1");
         dto.setMsg("通过key查询商品");
-        dto.setData(flowers);
+        dto.setData(products);
         return dto;
     }
 
@@ -153,22 +153,22 @@ public class ProductController {
     * }
     * */
     @ApiOperation("查询商品")
-    @RequestMapping(value = "query_flowers", method = RequestMethod.POST)
-    public ResponseDto queryFlowers(@RequestBody JSONObject jsonObject) {
+    @RequestMapping(value = "query_products", method = RequestMethod.POST)
+    public ResponseDto queryProducts(@RequestBody JSONObject jsonObject) {
         Integer currentPage = jsonObject.getInteger("currentPage");
         currentPage = currentPage==null?1:currentPage;
         Integer pageSize = jsonObject.getInteger("pageSize");
         pageSize = pageSize==null?10:pageSize;
 
-        JSONObject flowerJSON = jsonObject.getJSONObject("condition");
-        Product condition = JSONObject.toJavaObject(flowerJSON, Product.class);
+        JSONObject productJSON = jsonObject.getJSONObject("condition");
+        Product condition = JSONObject.toJavaObject(productJSON, Product.class);
 
-        PageBean flowers = productService.queryFlowers(currentPage,pageSize,condition);
+        PageBean products = productService.queryProducts(currentPage,pageSize,condition);
 
         ResponseDto res = new ResponseDto();
         res.setCode("1");
         res.setMsg("查询商品");
-        res.setData(flowers);
+        res.setData(products);
         return res;
     }
 
@@ -176,22 +176,22 @@ public class ProductController {
     * 获取商品封面
     * */
     @ApiOperation("获取商品封面")
-    @RequestMapping(value = "query_flower_cover", method = RequestMethod.POST)
-    public ResponseDto queryFlowerCover(@RequestBody JSONObject jsonObject) {
+    @RequestMapping(value = "query_product_cover", method = RequestMethod.POST)
+    public ResponseDto queryProductCover(@RequestBody JSONObject jsonObject) {
         Integer currentPage = jsonObject.getInteger("currentPage");
         currentPage = currentPage==null?1:currentPage;
         Integer pageSize = jsonObject.getInteger("pageSize");
         pageSize = pageSize==null?10:pageSize;
 
-        JSONObject flowerJSON = jsonObject.getJSONObject("condition");
-        Product condition = JSONObject.toJavaObject(flowerJSON, Product.class);
+        JSONObject productJSON = jsonObject.getJSONObject("condition");
+        Product condition = JSONObject.toJavaObject(productJSON, Product.class);
 
-        PageBean flowerCovers  = productService.queryFlowerCover(currentPage,pageSize,condition);
+        PageBean productCovers  = productService.queryProductCover(currentPage,pageSize,condition);
 
         ResponseDto res = new ResponseDto();
         res.setCode("1");
         res.setMsg("查询商品封面");
-        res.setData(flowerCovers);
+        res.setData(productCovers);
         return res;
     }
 
@@ -199,14 +199,14 @@ public class ProductController {
     * 获取商品详情（带图片地址）
     * */
     @ApiOperation("获取商品详情（带图片地址）")
-    @RequestMapping(value = "get_flower_detail", method = RequestMethod.POST)
-    public ResponseDto getFlowerDetail(@RequestBody JSONObject jsonObject) {
-        Integer flowerId = jsonObject.getInteger("flowerId");
-        Map<String,Object> flowerWithImgPath = productService.getFlowerDetail(flowerId);
+    @RequestMapping(value = "get_product_detail", method = RequestMethod.POST)
+    public ResponseDto getProductDetail(@RequestBody JSONObject jsonObject) {
+        Integer productId = jsonObject.getInteger("productId");
+        Map<String,Object> productWithImgPath = productService.getProductDetail(productId);
         ResponseDto res = new ResponseDto();
         res.setCode("1");
         res.setMsg("查询商品详情");
-        res.setData(flowerWithImgPath);
+        res.setData(productWithImgPath);
         return res;
     }
 
@@ -214,8 +214,8 @@ public class ProductController {
     *通过关键词获取商品封面
     * */
     @ApiOperation("通过关键词获取商品封面")
-    @RequestMapping(value = "get_key_flower_cover", method = RequestMethod.POST)
-    public ResponseDto getFlowerCoverByKey(@RequestBody JSONObject jsonObject) {
+    @RequestMapping(value = "get_key_product_cover", method = RequestMethod.POST)
+    public ResponseDto getProductCoverByKey(@RequestBody JSONObject jsonObject) {
         Integer currentPage = jsonObject.getInteger("currentPage");
         currentPage = currentPage==null?1:currentPage;
         Integer pageSize = jsonObject.getInteger("pageSize");
@@ -223,12 +223,12 @@ public class ProductController {
 
         String key = jsonObject.getString("key");
 
-        PageBean flowerCovers  = productService.queryFlowerCoverByKey(currentPage,pageSize,key);
+        PageBean productCovers  = productService.queryProductCoverByKey(currentPage,pageSize,key);
 
         ResponseDto res = new ResponseDto();
         res.setCode("1");
         res.setMsg("通过关键词查询商品封面");
-        res.setData(flowerCovers);
+        res.setData(productCovers);
         return res;
     }
 

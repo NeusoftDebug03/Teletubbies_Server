@@ -84,7 +84,7 @@ public class OrderController {
     * userId:
     * content:[
     *   {
-    *       flowerId:
+    *       productId:
     *       count:
     *   },
     * ]
@@ -113,32 +113,32 @@ public class OrderController {
             for(int i=0; i<contents.size(); ++i) {
                 JSONObject content = contents.getJSONObject(i);
 
-                Integer flowerId = content.getInteger("flowerId");
+                Integer productId = content.getInteger("productId");
                 Integer count = content.getInteger("count");
                 /*
                 * Get price and discount
                 * */
-                Product product = productService.findFlower(flowerId);
+                Product product = productService.findProduct(productId);
 
                 System.out.println(count);
-                System.out.println(product.getFlowerStock());
+                System.out.println(product.getProductStock());
                 // 库存不足
-                if (product.getFlowerStock() < count) {
+                if (product.getProductStock() < count) {
                     res.setCode("0");
-                    res.setMsg("鲜花" + product.getFlowerId() + ":\"" + product.getFlowerName() + "\"库存不足");
+                    res.setMsg("鲜花" + product.getProductId() + ":\"" + product.getProductName() + "\"库存不足");
                     return res;
                 }
                 // 修改库存
                 Product updateProduct = new Product();
-                updateProduct.setFlowerId(product.getFlowerId());
-                updateProduct.setFlowerStock(product.getFlowerStock() - count);
+                updateProduct.setProductId(product.getProductId());
+                updateProduct.setProductStock(product.getProductStock() - count);
                 // 更新鲜花
-                productService.modifyFlower(updateProduct);
+                productService.modifyProduct(updateProduct);
 
                 // 计算价格
-                BigDecimal flowerPrice = product.getFlowerPrice();
-                BigDecimal flowerDiscount = product.getFlowerDiscount();
-                BigDecimal price = flowerPrice.multiply(flowerDiscount);
+                BigDecimal productPrice = product.getProductPrice();
+                BigDecimal productDiscount = product.getProductDiscount();
+                BigDecimal price = productPrice.multiply(productDiscount);
 
                 /*
                 * cost = cost + price*count
@@ -160,7 +160,7 @@ public class OrderController {
                 /*
                 * insert to db
                 * */
-                Content iContent = new Content(contentId,flowerId,count);
+                Content iContent = new Content(contentId,productId,count);
                 Integer rowCount = contentService.InsertContent(iContent);
 
             }
@@ -224,14 +224,14 @@ public class OrderController {
         List<Content> contents = contentService.getContentsById(order.getContentId());
         
         for(Content content:contents) {
-            Integer flowerId = content.getFlowerId();
+            Integer productId = content.getProductId();
             Integer count = content.getCount();
-            Product product = productService.findFlower(flowerId);
+            Product product = productService.findProduct(productId);
 
             Product updateProduct = new Product();
-            updateProduct.setFlowerId(flowerId);
-            updateProduct.setFlowerStock(product.getFlowerStock() + count);
-            productService.modifyFlower(updateProduct);
+            updateProduct.setProductId(productId);
+            updateProduct.setProductStock(product.getProductStock() + count);
+            productService.modifyProduct(updateProduct);
         }
         contentService.deleteContent(order.getContentId());
         orderService.deleteOrder(orderId);
@@ -262,8 +262,8 @@ public class OrderController {
         Integer pageSize = jsonObject.getInteger("pageSize");
         pageSize = pageSize==null?10:pageSize;
 
-        JSONObject flowerJSON = jsonObject.getJSONObject("condition");
-        Order condition = JSONObject.toJavaObject(flowerJSON,Order.class);
+        JSONObject productJSON = jsonObject.getJSONObject("condition");
+        Order condition = JSONObject.toJavaObject(productJSON,Order.class);
 
         PageBean orders = orderService.queryOrders(currentPage,pageSize,condition);
         ResponseDto res = new ResponseDto();
@@ -279,18 +279,18 @@ public class OrderController {
     @ApiOperation("获取销售情况")
     @RequestMapping(value = "sale_info", method = RequestMethod.POST)
     public ResponseDto getSaleInfo() {
-        List<Product> allProducts = productService.findAllFlowers();
+        List<Product> allProducts = productService.findAllProducts();
         List<Map<String,Object>> res = new ArrayList<>();
         for (Product product : allProducts) {
-            Integer flowerId = product.getFlowerId();
-            String flowerName = product.getFlowerName();
-            Integer count = orderService.getFlowerSaleCount(flowerId);
+            Integer productId = product.getProductId();
+            String productName = product.getProductName();
+            Integer count = orderService.getProductSaleCount(productId);
             count = count == null?0:count;
-            Map<String,Object> flowerCount = new LinkedHashMap<>();
-            flowerCount.put("flowerId",flowerId);
-            flowerCount.put("flowerName",flowerName);
-            flowerCount.put("count",count);
-            res.add(flowerCount);
+            Map<String,Object> productCount = new LinkedHashMap<>();
+            productCount.put("productId",productId);
+            productCount.put("productName",productName);
+            productCount.put("count",count);
+            res.add(productCount);
         }
         ResponseDto result = new ResponseDto();
         result.setCode("1");

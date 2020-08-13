@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("flowerImgService")
+@Service("productImgService")
 public class ProductImgServiceImpl implements ProductImgService {
 
     @Autowired
@@ -27,48 +27,49 @@ public class ProductImgServiceImpl implements ProductImgService {
 
 
     @Override
-    public List<ProductImg> getFlowerImgsById(Integer flowerId) {
+    public List<ProductImg> getProductImgsById(Integer productId) {
 
-        List<ProductImg> productImgs = productImgMapper.getFlowerImgsById(flowerId);
+        List<ProductImg> productImgs = productImgMapper.getProductImgsById(productId);
         return productImgs;
 
     }
 
     @Override
-    public void addFlowerImg(Integer flowerId, String imgPath) {
+    public void addProductImg(Integer productId, String imgPath) {
         ProductImg productImg = new ProductImg();
-        productImg.setFlowerId(flowerId);
-        productImg.setFlowerImgPath(imgPath);
-        System.out.println(productImg.getFlowerId());
-        System.out.println(productImg.getFlowerImgPath());
-        productImgMapper.insert(productImg);
+        productImg.setProductId(productId);
+        productImg.setProductImgPath(imgPath);
+        System.out.println(productImg.getProductId());
+        System.out.println(productImg.getProductImgPath());
+//        productImgMapper.insert(productImg);
+        productImgMapper.update(productImg);
     }
 
     @Override
-    public void delFlowerImg(ProductImg productImg) {
-        productImgMapper.delFlowerImg(productImg);
+    public void delProductImg(ProductImg productImg) {
+        productImgMapper.delProductImg(productImg);
     }
 
     @Override
-    public PageBean queryFlowersImgs(Integer currentPage, Integer pageSize) {
+    public PageBean queryProductsImgs(Integer currentPage, Integer pageSize) {
 
         Page page = PageHelper.startPage(currentPage,pageSize,true);
-        List<Product> allProducts = productMapper.findAllFlowers();
+        List<Product> allProducts = productMapper.findAllProducts();
         if (allProducts == null || allProducts.isEmpty()) {
             return new PageBean(currentPage,pageSize,0,false,0,null);
         }
-        List<Map<String,Object>> flowersImgs = new ArrayList<>();
+        List<Map<String,Object>> productsImgs = new ArrayList<>();
         for(Product product : allProducts) {
-            Map<String, Object> flowerImgs = new LinkedHashMap<>();
-            flowerImgs.put("flowerId", product.getFlowerId());
-            List<ProductImg> productImg = productImgMapper.getFlowerImgsById(product.getFlowerId());
-            flowerImgs.put("flowerImgs", productImg);
-            flowersImgs.add(flowerImgs);
+            Map<String, Object> productImgs = new LinkedHashMap<>();
+            productImgs.put("productId", product.getProductId());
+            List<ProductImg> productImg = productImgMapper.getProductImgsById(product.getProductId());
+            productImgs.put("productImgs", productImg);
+            productsImgs.add(productImgs);
         }
         Long totalNum = page.getTotal();
         Integer totalPage = page.getPages();
         Boolean isMore = currentPage<totalPage?true:false;
-        PageBean pageBean = new PageBean(currentPage,pageSize,totalNum,isMore,totalPage,flowersImgs);
+        PageBean pageBean = new PageBean(currentPage,pageSize,totalNum,isMore,totalPage,productsImgs);
         return pageBean;
     }
 }

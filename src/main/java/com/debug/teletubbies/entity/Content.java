@@ -3,7 +3,7 @@ package com.debug.teletubbies.entity;
 public class Content {
     private Integer contentId;
 
-    private Integer flowerId;
+    private Integer productId;
 
     private Integer count;
 
@@ -15,12 +15,12 @@ public class Content {
         this.contentId = contentId;
     }
 
-    public Integer getFlowerId() {
-        return flowerId;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setFlowerId(Integer flowerId) {
-        this.flowerId = flowerId;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public Integer getCount() {
@@ -31,9 +31,9 @@ public class Content {
         this.count = count;
     }
 
-    public Content(Integer contentId, Integer flowerId, Integer count) {
+    public Content(Integer contentId, Integer productId, Integer count) {
         this.contentId = contentId;
-        this.flowerId = flowerId;
+        this.productId = productId;
         this.count = count;
     }
 
