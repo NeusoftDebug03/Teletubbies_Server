@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34f1e80f-3802-4e6c-884f-26b0acfb7b54" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/imgs/121f0780-3b60-4cd4-b9b0-db24df44ea0c.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/debug/teletubbies/config/Swagger2Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/debug/teletubbies/config/Swagger2Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/debug/teletubbies/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/debug/teletubbies/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/debug/teletubbies/config/Swagger2Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/debug/teletubbies/config/Swagger2Config.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/debug/teletubbies/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/debug/teletubbies/controller/OrderController.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,7 +82,7 @@
       <updated>1597306310986</updated>
       <workItem from="1597306312641" duration="905000" />
       <workItem from="1597307244344" duration="12983000" />
-      <workItem from="1597325439637" duration="8113000" />
+      <workItem from="1597325439637" duration="8379000" />
     </task>
     <task id="LOCAL-00001" summary="更新项目">
       <created>1597325628834</created>
@@ -106,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597325971494</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="使用Swagger-Bootstrap-UI替换默认的UI实现左右菜单风格的Swagger-UI">
+      <created>1597334820375</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1597334820375</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,6 +133,7 @@
     <MESSAGE value="更新项目" />
     <MESSAGE value="添加图片资源以及数据库" />
     <MESSAGE value="清理无用的文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="清理无用的文件" />
+    <MESSAGE value="使用Swagger-Bootstrap-UI替换默认的UI实现左右菜单风格的Swagger-UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="使用Swagger-Bootstrap-UI替换默认的UI实现左右菜单风格的Swagger-UI" />
   </component>
 </project>
