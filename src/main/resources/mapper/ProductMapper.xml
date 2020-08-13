@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debug.teletubbies.mapper.ProductMapper">
+    <resultMap id="BaseResultMap" type="com.debug.teletubbies.entity.Product">
+        <id column="flower_id" property="flowerId" jdbcType="INTEGER"/>
+        <result column="flower_name" property="flowerName" jdbcType="VARCHAR"/>
+        <result column="flower_langs" property="flowerLangs" jdbcType="VARCHAR"/>
+        <result column="flower_intro" property="flowerIntro" jdbcType="VARCHAR"/>
+        <result column="flower_details" property="flowerDetails" jdbcType="VARCHAR"/>
+        <result column="flower_extra_info" property="flowerExtraInfo" jdbcType="VARCHAR"/>
+        <result column="flower_price" property="flowerPrice" jdbcType="DECIMAL"/>
+        <result column="flower_discount" property="flowerDiscount" jdbcType="DECIMAL"/>
+        <result column="flower_stock" property="flowerStock" jdbcType="INTEGER"/>
+        <result column="flower_class" property="flowerClass" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    flower_id, flower_name, flower_langs, flower_intro, flower_details, flower_extra_info, 
+    flower_price, flower_discount, flower_stock, flower_class
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        where flower_id = #{flowerId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product
+    where flower_id = #{flowerId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.debug.teletubbies.entity.Product">
+    insert into product (flower_id, flower_name, flower_langs,
+      flower_intro, flower_details, flower_extra_info, 
+      flower_price, flower_discount, flower_stock, flower_class
+      )
+    values (#{flowerId,jdbcType=INTEGER}, #{flowerName,jdbcType=VARCHAR}, #{flowerLangs,jdbcType=VARCHAR}, 
+      #{flowerIntro,jdbcType=VARCHAR}, #{flowerDetails,jdbcType=VARCHAR}, #{flowerExtraInfo,jdbcType=VARCHAR}, 
+      #{flowerPrice,jdbcType=DECIMAL}, #{flowerDiscount,jdbcType=DECIMAL}, #{flowerStock,jdbcType=INTEGER}
+      ,#{flowerClass}
+      )
+  </insert>
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="flowerId"
+            parameterType="com.debug.teletubbies.entity.Product">
+        insert into product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="flowerId != null">
+                flower_id,
+            </if>
+            <if test="flowerName != null">
+                flower_name,
+            </if>
+            <if test="flowerLangs != null">
+                flower_langs,
+            </if>
+            <if test="flowerIntro != null">
+                flower_intro,
+            </if>
+            <if test="flowerDetails != null">
+                flower_details,
+            </if>
+            <if test="flowerExtraInfo != null">
+                flower_extra_info,
+            </if>
+            <if test="flowerPrice != null">
+                flower_price,
+            </if>
+            <if test="flowerDiscount != null">
+                flower_discount,
+            </if>
+            <if test="flowerStock != null">
+                flower_stock,
+            </if>
+            <if test="flowerClass != null">
+                flower_class,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="flowerId != null">
+                #{flowerId,jdbcType=INTEGER},
+            </if>
+            <if test="flowerName != null">
+                #{flowerName,jdbcType=VARCHAR},
+            </if>
+            <if test="flowerLangs != null">
+                #{flowerLangs,jdbcType=VARCHAR},
+            </if>
+            <if test="flowerIntro != null">
+                #{flowerIntro,jdbcType=VARCHAR},
+            </if>
+            <if test="flowerDetails != null">
+                #{flowerDetails,jdbcType=VARCHAR},
+            </if>
+            <if test="flowerExtraInfo != null">
+                #{flowerExtraInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="flowerPrice != null">
+                #{flowerPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="flowerDiscount != null">
+                #{flowerDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="flowerStock != null">
+                #{flowerStock,jdbcType=INTEGER},
+            </if>
+            <if test="flowerClass != null">
+                #{flowerClass}
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.debug.teletubbies.entity.Product">
+        update product
+        <set>
+            <if test="flowerName != null">
+                flower_name = #{flowerName,jdbcType=VARCHAR},
+            </if>
+            <if test="flowerLangs != null">
+                flower_langs = #{flowerLangs,jdbcType=VARCHAR},
+            </if>
+            <if test="flowerIntro != null">
+                flower_intro = #{flowerIntro,jdbcType=VARCHAR},
+            </if>
+            <if test="flowerDetails != null">
+                flower_details = #{flowerDetails,jdbcType=VARCHAR},
+            </if>
+            <if test="flowerExtraInfo != null">
+                flower_extra_info = #{flowerExtraInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="flowerPrice != null">
+                flower_price = #{flowerPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="flowerDiscount != null">
+                flower_discount = #{flowerDiscount,jdbcType=DECIMAL},
+            </if>
+            <if test="flowerStock != null">
+                flower_stock = #{flowerStock,jdbcType=INTEGER},
+            </if>
+            <if test="flowerClass != null">
+                flower_class = #{flowerClass}
+            </if>
+        </set>
+        where flower_id = #{flowerId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.debug.teletubbies.entity.Product">
+    update product
+    set flower_name = #{flowerName,jdbcType=VARCHAR},
+      flower_langs = #{flowerLangs,jdbcType=VARCHAR},
+      flower_intro = #{flowerIntro,jdbcType=VARCHAR},
+      flower_details = #{flowerDetails,jdbcType=VARCHAR},
+      flower_extra_info = #{flowerExtraInfo,jdbcType=VARCHAR},
+      flower_price = #{flowerPrice,jdbcType=DECIMAL},
+      flower_discount = #{flowerDiscount,jdbcType=DECIMAL},
+      flower_stock = #{flowerStock,jdbcType=INTEGER}
+    where flower_id = #{flowerId,jdbcType=INTEGER}
+  </update>
+
+    <!--List<Flower> findAllFlowers();-->
+    <select id="findAllFlowers" resultType="com.debug.teletubbies.entity.Product">
+    select * from product
+  </select>
+
+    <!--List<Flower> findFlowersByKey(String key);-->
+    <select id="findFlowersByKey" resultType="com.debug.teletubbies.entity.Product">
+    select * from product where flower_name like "%${key}%"
+  </select>
+
+    <!--List<Flower> queryFlowers(Flower condition);-->
+    <select id="queryFlowers" resultType="com.debug.teletubbies.entity.Product">
+        select * from product
+        <where>
+            <if test="flowerId != null">
+                and flower_id = #{flowerId}
+            </if>
+            <if test="flowerName != null">
+                and flower_name = #{flowerName}
+            </if>
+            <if test="flowerClass != null">
+                and flower_class = #{flowerClass}
+            </if>
+        </where>
+    </select>
+
+    <!--List<FlowerCover> queryFlowerCovers(Flower condition);-->
+    <select id="queryFlowerCovers" resultType="com.debug.teletubbies.entity.ProductCover">
+        select * from product
+        <where>
+            <if test="flowerClass != null">
+                and flower_class = #{flowerClass}
+            </if>
+        </where>
+    </select>
+
+    <!--String getFlowerCover(Integer flowerId);-->
+    <select id="getFlowerCover" resultType="java.lang.String">
+    select flower_img_path from flower_img where flower_id = #{flowerId} limit 1
+  </select>
+
+    <!--List<String> getFlowerImgs(Integer flowerId);-->
+    <select id="getFlowerImgs" resultType="java.lang.String">
+    select flower_img_path from flower_img where flower_id = #{flowerId} ;
+  </select>
+
+    <!--List<FlowerCover> queryFlowerCoversByKey(String key);-->
+    <select id="queryFlowerCoversByKey" resultType="com.debug.teletubbies.entity.ProductCover">
+    select * from product where flower_name like "%${key}%"
+  </select>
+
+</mapper>

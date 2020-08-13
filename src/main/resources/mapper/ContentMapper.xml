@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debug.teletubbies.mapper.ContentMapper">
+    <resultMap id="BaseResultMap" type="com.debug.teletubbies.entity.Content">
+        <result column="content_id" property="contentId" jdbcType="INTEGER"/>
+        <result column="flower_id" property="flowerId" jdbcType="INTEGER"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.debug.teletubbies.entity.Content">
+    insert into content (content_id, flower_id, count
+      )
+    values (#{contentId,jdbcType=INTEGER}, #{flowerId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.debug.teletubbies.entity.Content">
+        insert into content
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contentId != null">
+                content_id,
+            </if>
+            <if test="flowerId != null">
+                flower_id,
+            </if>
+            <if test="count != null">
+                count,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contentId != null">
+                #{contentId,jdbcType=INTEGER},
+            </if>
+            <if test="flowerId != null">
+                #{flowerId,jdbcType=INTEGER},
+            </if>
+            <if test="count != null">
+                #{count,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <!--List<Content> getContentsById(Integer contentId);-->
+    <select id="getContentsById" resultType="com.debug.teletubbies.entity.Content">
+    select * from content where content_id = #{contentId}
+  </select>
+
+    <!--void deleteContent(Integer contentId);-->
+    <delete id="deleteContent">
+    delete from content where content_id = #{contentId}
+  </delete>
+
+</mapper>
