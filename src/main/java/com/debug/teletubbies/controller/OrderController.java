@@ -35,6 +35,7 @@ public class OrderController {
 
     /**
      * 列出全部订单
+     *
      * @return
      */
     @ApiOperation("列出全部订单")
@@ -49,12 +50,13 @@ public class OrderController {
         res.setData(orders);
         return res;
     }
+
     /*
-    * 通过订单id获取订单详细信息
-    *参数{
-    * orderId:
-    * }
-    * */
+     * 通过订单id获取订单详细信息
+     *参数{
+     * orderId:
+     * }
+     * */
     @ApiOperation("通过订单ID获取订单详细信息")
     @RequestMapping(value = "get_order_detail", method = RequestMethod.POST)
     public ResponseDto getOrderDetail(@RequestBody JSONObject jsonObject) {
@@ -70,27 +72,27 @@ public class OrderController {
         res.setCode("1");
         res.setMsg("通过订单号查询订单详细信息");
         Map<String, Object> data = new LinkedHashMap<>();
-        data.put("order",order);
-        data.put("user",user);
-        data.put("contents",contents);
-        data.put("status",status);
+        data.put("order", order);
+        data.put("user", user);
+        data.put("contents", contents);
+        data.put("status", status);
         res.setData(data);
         return res;
     }
 
     /*
-    * 创建新的订单
-    * 参数{
-    * userId:
-    * content:[
-    *   {
-    *       productId:
-    *       count:
-    *   },
-    * ]
-    * }
-    *
-    * */
+     * 创建新的订单
+     * 参数{
+     * userId:
+     * content:[
+     *   {
+     *       productId:
+     *       count:
+     *   },
+     * ]
+     * }
+     *
+     * */
     @ApiOperation("创建新的订单")
     @RequestMapping(value = "create_order", method = RequestMethod.POST)
     public ResponseDto createNewOrder(@RequestBody JSONObject jsonObject) {
@@ -99,57 +101,76 @@ public class OrderController {
         JSONArray contents = jsonObject.getJSONArray("contents");
 
         /*
-        * 生成contentId
-        * */
+         * 生成contentId
+         * */
         Integer contentId = UUID.randomUUID().toString().hashCode();
-        contentId = contentId< 0 ? -contentId : contentId;
+        contentId = contentId < 0 ? -contentId : contentId;
+
+        System.out.println("_______________________________________");
+        System.out.println("订单ID: " + contentId);
 
         /*
-        * Calculate out the cost
-        * */
+         * Calculate out the cost
+         * */
         BigDecimal cost = new BigDecimal("0");
         ResponseDto res = new ResponseDto();
         if (contents.size() > 0) {
-            for(int i=0; i<contents.size(); ++i) {
+            for (int i = 0; i < contents.size(); ++i) {
                 JSONObject content = contents.getJSONObject(i);
 
                 Integer productId = content.getInteger("productId");
                 Integer count = content.getInteger("count");
                 /*
-                * Get price and discount
-                * */
+                 * Get price and discount
+                 * */
                 Product product = productService.findProduct(productId);
 
-                System.out.println(count);
-                System.out.println(product.getProductStock());
+                System.out.println("订单商品数量: " + count);
+                System.out.println("商品库存: " + product.getProductStock());
+
                 // 库存不足
                 if (product.getProductStock() < count) {
                     res.setCode("0");
-                    res.setMsg("鲜花" + product.getProductId() + ":\"" + product.getProductName() + "\"库存不足");
+                    res.setMsg("商品" + product.getProductId() + ":\"" + product.getProductName() + "\"库存不足!!!");
                     return res;
                 }
                 // 修改库存
                 Product updateProduct = new Product();
                 updateProduct.setProductId(product.getProductId());
                 updateProduct.setProductStock(product.getProductStock() - count);
-                // 更新鲜花
+
+                System.out.println("商品ID: " + product.getProductId());
+                System.out.println("更新后的商品库存: " + (product.getProductStock() - count));
+
+                // 更新商品
                 productService.modifyProduct(updateProduct);
+
+                System.out.println("更新商品的请求body: " + updateProduct);
 
                 // 计算价格
                 BigDecimal productPrice = product.getProductPrice();
                 BigDecimal productDiscount = product.getProductDiscount();
                 BigDecimal price = productPrice.multiply(productDiscount);
 
-                /*
-                * cost = cost + price*count
-                * */
-                cost = cost.add(price.multiply(BigDecimal.valueOf(count)));
+                System.out.println("商品价格: " + productPrice);
+                System.out.println("商品折扣: " + productDiscount);
+                System.out.println("折后价格: " + price);
 
                 /*
-                * 修改账户余额
-                * */
+                 * cost = cost + price*count
+                 * */
+                cost = cost.add(price.multiply(BigDecimal.valueOf(count)));
+
+                System.out.println("订单总价: " + cost);
+
+                /*
+                 * 修改账户余额
+                 * */
                 User user = userService.getUserById(userId);
-                if (user.getBalance().subtract(cost).doubleValue() < 0 ) {
+
+                System.out.println("用户: " + user);
+
+                if (user.getBalance().subtract(cost).doubleValue() < 0) {
                     res.setCode("0");
                     res.setMsg("余额不足");
                     return res;
@@ -157,10 +178,11 @@ public class OrderController {
                 user.setBalance(user.getBalance().subtract(cost));
                 userService.modifyUser(user);
 
+
                 /*
-                * insert to db
-                * */
-                Content iContent = new Content(contentId,productId,count);
+                 * insert to db
+                 * */
+                Content iContent = new Content(contentId, productId, count);
                 Integer rowCount = contentService.InsertContent(iContent);
 
             }
@@ -169,7 +191,7 @@ public class OrderController {
              * */
             Integer statusId = 1;
 
-            Order order = new Order(userId,contentId,cost,statusId);
+            Order order = new Order(userId, contentId, cost, statusId);
 
             Order orderWithId = orderService.insertOrder(order);
 
@@ -181,38 +203,38 @@ public class OrderController {
             res.setMsg("订单中没有商品");
         }
 
-        return  res;
+        return res;
     }
 
     /*
-    * 修改订单状态
-    * 参数:{
-    * orderId:
-    * statusId:
-    * }
-    *
-    * */
+     * 修改订单状态
+     * 参数:{
+     * orderId:
+     * statusId:
+     * }
+     *
+     * */
     @ApiOperation("修改订单状态")
     @RequestMapping(value = "modify_order_status", method = RequestMethod.POST)
     public ResponseDto modifyOrderStatus(@RequestBody JSONObject jsonObject) {
         Integer orderId = jsonObject.getInteger("orderId");
         Integer statusId = jsonObject.getInteger("statusId");
 
-        Integer rowCount = orderService.modifyOrderStatus(orderId,statusId);
+        Integer rowCount = orderService.modifyOrderStatus(orderId, statusId);
 
         ResponseDto res = new ResponseDto();
         res.setCode("1");
         res.setMsg("修改订单状态");
 
-        return  res;
+        return res;
     }
 
     /*
-    * 删除订单
-    * 参数：{
-    * orderId
-    * }
-    * */
+     * 删除订单
+     * 参数：{
+     * orderId
+     * }
+     * */
     @ApiOperation("删除订单")
     @RequestMapping(value = "del_order", method = RequestMethod.POST)
     public ResponseDto deleteOrder(@RequestBody JSONObject jsonObject) {
@@ -222,8 +244,8 @@ public class OrderController {
         // 如果订单没有被确认收货就恢复库存
         Order order = orderService.getOrderById(orderId);
         List<Content> contents = contentService.getContentsById(order.getContentId());
-        
-        for(Content content:contents) {
+
+        for (Content content : contents) {
             Integer productId = content.getProductId();
             Integer count = content.getCount();
             Product product = productService.findProduct(productId);
@@ -237,8 +259,6 @@ public class OrderController {
         orderService.deleteOrder(orderId);
 
 
-
-
         ResponseDto res = new ResponseDto();
 
         res.setCode("1");
@@ -248,24 +268,24 @@ public class OrderController {
     }
 
     /*查询订单
-    * 参数{
-    * currentPage：
-    * pageSize：
-    * condition:{
-    * }
-    * */
+     * 参数{
+     * currentPage：
+     * pageSize：
+     * condition:{
+     * }
+     * */
     @ApiOperation("查询订单")
     @RequestMapping(value = "queryOrders", method = RequestMethod.POST)
     public ResponseDto queryOrders(@RequestBody JSONObject jsonObject) {
         Integer currentPage = jsonObject.getInteger("currentPage");
-        currentPage = currentPage==null?1:currentPage;
+        currentPage = currentPage == null ? 1 : currentPage;
         Integer pageSize = jsonObject.getInteger("pageSize");
-        pageSize = pageSize==null?10:pageSize;
+        pageSize = pageSize == null ? 10 : pageSize;
 
         JSONObject productJSON = jsonObject.getJSONObject("condition");
-        Order condition = JSONObject.toJavaObject(productJSON,Order.class);
+        Order condition = JSONObject.toJavaObject(productJSON, Order.class);
 
-        PageBean orders = orderService.queryOrders(currentPage,pageSize,condition);
+        PageBean orders = orderService.queryOrders(currentPage, pageSize, condition);
         ResponseDto res = new ResponseDto();
         res.setCode("1");
         res.setMsg("查询订单");
@@ -274,22 +294,22 @@ public class OrderController {
     }
 
     /*
-    * 获取销售情况
-    * */
+     * 获取销售情况
+     * */
     @ApiOperation("获取销售情况")
     @RequestMapping(value = "sale_info", method = RequestMethod.POST)
     public ResponseDto getSaleInfo() {
         List<Product> allProducts = productService.findAllProducts();
-        List<Map<String,Object>> res = new ArrayList<>();
+        List<Map<String, Object>> res = new ArrayList<>();
         for (Product product : allProducts) {
             Integer productId = product.getProductId();
             String productName = product.getProductName();
             Integer count = orderService.getProductSaleCount(productId);
-            count = count == null?0:count;
-            Map<String,Object> productCount = new LinkedHashMap<>();
-            productCount.put("productId",productId);
-            productCount.put("productName",productName);
-            productCount.put("count",count);
+            count = count == null ? 0 : count;
+            Map<String, Object> productCount = new LinkedHashMap<>();
+            productCount.put("productId", productId);
+            productCount.put("productName", productName);
+            productCount.put("count", count);
             res.add(productCount);
         }
         ResponseDto result = new ResponseDto();
